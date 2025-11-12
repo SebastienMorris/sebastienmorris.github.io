@@ -206,3 +206,9 @@
   }
 }
 
+a.nav-link:hover a.nav-link:focus {
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+

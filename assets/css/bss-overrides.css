@@ -158,16 +158,16 @@ a:hover {
   margin-bottom: 3rem !important;
 }
 
-.mt-1 {
-  margin-top: .25rem !important;
-}
-
 .mt-3 {
   margin-top: 1rem !important;
 }
 
 .mt-4 {
   margin-top: 1.5rem !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
 }
 
 .me-1 {
@@ -237,6 +237,13 @@ a:hover {
 
 @media (min-width: 992px) {
   .py-lg-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .py-xl-5 {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }

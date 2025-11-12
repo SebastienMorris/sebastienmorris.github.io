@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Simulateur Pédagogique de manutention</title>
-    <meta property="og:image" content="../assets/img/projects/torpille_sqaure.png">
-    <meta name="description" content="Educational simulator for teaching the handling of torpedoes">
+    <title>Conventions Document</title>
+    <meta property="og:image" content="../assets/img/projects/DocumentationBTS_Cover.png">
+    <meta name="description" content="Documentation for project conventions, containing detailed information on: project directory hierarchy, asset naming, coding norms, commit norms and how to use the versioning software (Perforce).">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Azeret+Mono:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap">
@@ -18,7 +18,7 @@
 
 <body>
     <header class="sticky-top" style="background: #e8d8c4;">
-        <div class="container">
+        <div class="container" style="padding-bottom: 0;">
             <h3 class="fs-5 fw-bold text-center text-primary" style="padding-top: 30px;">Sébastien Morris</h3>
             <p style="text-align: center;">sebw.morris@gmail.com</p>
             <ul class="list-inline" style="text-align: center;">
@@ -33,17 +33,17 @@
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
                         </svg></a></li>
             </ul>
-            <nav class="navbar navbar-expand-md sticky-top bg-body">
-                <div class="container-fluid"><a class="navbar-brand" href="../index.html">Home</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navcol-1">
+            <nav class="navbar navbar-expand-md bg-body d-flex align-items-center">
+                <div class="container-fluid"><a class="navbar-brand focus-ring d-flex justify-content-center align-items-center" href="../index.html">Home</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse d-flex justify-content-start align-items-center" id="navcol-3">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link active" href="../overview/1Projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link active d-flex align-items-center" href="../overview/1Projects.html">Projects</a></li>
                             <li class="nav-item"><a class="nav-link" href="../overview/2Experimentation.html">Experimentations</a></li>
                             <li class="nav-item"><a class="nav-link" href="../overview/3Documentation.html">Documentations</a></li>
                         </ul>
                     </div>
                 </div>
-            </nav><a class="fw-bold text-decoration-none link-primary mt-3 mb-3 link-back" href="/overview/1Projects.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-left-short me-1">
+            </nav><a class="fw-bold text-decoration-none link-primary mt-3 mt-lg-1 mb-3 link-back" href="/overview/3Documentation.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-left-short me-1">
                     <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"></path>
                 </svg>Back</a>
         </div>
@@ -51,35 +51,43 @@
     <section class="my-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 align-self-start mt-3">
-                    <div class="row gx-2 gy-2 row-cols-1" data-bss-baguettebox="">
-                        <div class="col"><a href="../assets/img/TorpilleHand.png"><img class="img-fluid" src="../assets/img/TorpilleHand.png"></a></div>
-                        <div class="col"><a href="../assets/img/tORPILLEvIEW.png"><img class="img-fluid" src="../assets/img/tORPILLEvIEW.png"></a></div>
-                    </div>
-                </div>
                 <div class="col">
-                    <h1 class="fs-2 fw-bold">Simulateur Pédagogique Manutention</h1>
-                    <p class="fst-italic text-muted">VR torpedo handling educational simulator</p>
-                    <p>VR educational simulator aiming to teach the students of "La Marine Nationale" the procedures for the handling of torpedoes.</p>
+                    <h1 class="fs-2 fw-bold">Project conventions document</h1>
+                    <p class="fst-italic text-muted">Document detailing project conventions and how to use Perforce</p>
+                    <p>Documentation for "Below Their Sight", a project currently in development using Unreal Engine 5. The team of eleven members including myself, contains one other programmer, a project manager, three graphic artists, two game designers, a UR/UX specialist, a UI specialist and a sound designer. This document was created collaboration with another programmer and details the various conventions that the members must respect throughout production. Containing rules on asset names, project directory organisation, coding norms, commit norms and a detailed tutorial on the use of Perforce and P4V (the versioning software for the project).</p>
                     <h1 class="fs-4 fw-bold mt-4">What I worked on</h1>
-                    <p class="fw-bold">Gameplay:</p>
+                    <p class="fw-bold">Perforce/P4V:</p>
                     <ul>
-                        <li>VR Player controller and physics: Use of OpenXR. Teleportation based movement. Setup of responsive hands and custom poses. Physics based interactions with objects and buttons.</li>
-                        <li>VR Object interaction mechanics: Physics based buttons and remote controls. Handling of large machines using remote controls and buttons.</li>
-                        <li>Objectives system</li>
-                        <li>UI and menus: In world menu using teleportation for menu navigation. In world UI displaying objectives information.</li>
+                        <li>Detailed instructions on setting up a workspace and the p4Ignore</li>
+                        <li>Detailed instructions on how to use P4V. Information on how to, Reconcile/Add your work, Submit, Get Latest, handling of changelists, the use of checkouts...&nbsp;</li>
+                        <li>Troubleshooting instructions. Recognising and resolving conflicts. As well as solving common problems.</li>
+                        <li>Correct practices when working with a versioning software. Regularity of commits, when to get latest...</li>
                     </ul>
-                    <ul></ul>
-                    <p class="fs-5 fw-bold mt-4">Unity 3D</p><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-badge-vr me-3 mb-1 pb-1" style="font-size: 50px;">
-                        <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path>
-                        <path d="M4.508 11h1.429l1.99-5.999H6.61L5.277 9.708H5.22L3.875 5.001H2.5zm6.387-5.999H8.5V11h1.173V8.763h1.064L11.787 11h1.327L11.91 8.583C12.455 8.373 13 7.779 13 6.9c0-1.147-.773-1.9-2.105-1.9zm-1.222 2.87V5.933h1.05c.63 0 1.05.347 1.05.989 0 .633-.408.95-1.067.95H9.673z"></path>
-                    </svg>
+                    <p class="fw-bold">Project Conventions:</p>
+                    <ul>
+                        <li>Collaborated for the conception of the project directory hierarchy, coding norms and asset naming.</li>
+                    </ul>
+                    <p class="fst-italic mt-5 mb-5" style="text-align: center;">This documentation is written in french, as the team is predominantly french and to avoid any miscomprehension .</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col d-flex justify-content-center">
-                    <p class="fst-italic mt-5 mb-5" style="text-align: center;">For confidentiality reasons I cannot show more photos, videos or links for this project. And photos are from an old version of the project not the latest release.</p>
+                <div class="col text-center d-flex justify-content-center" style="margin-top: 20px;margin-bottom: 20px;">
+                    <section class="py-4 py-xl-5">
+                        <div class="container">
+                            <div class="row gx-2 gy-2 row-cols-md-2 row-cols-xl-3" data-bss-baguettebox="">
+                                <div class="col"><a href="../assets/img/BTSDoc/ConventionDocumentationBTS_page-0001.jpg"><img class="img-fluid" src="../assets/img/BTSDoc/ConventionDocumentationBTS_page-0001.jpg"></a></div>
+                                <div class="col"><a href="../assets/img/BTSDoc/ConventionDocumentationBTS_page-0002.jpg"><img class="img-fluid" src="../assets/img/BTSDoc/ConventionDocumentationBTS_page-0002.jpg"></a></div>
+                                <div class="col"><a href="../assets/img/BTSDoc/ConventionDocumentationBTS_page-0003.jpg"><img class="img-fluid" src="../assets/img/BTSDoc/ConventionDocumentationBTS_page-0003.jpg"></a></div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center"><a class="fs-5 fw-bold link-primary ms-5 me-5" href="https://drive.google.com/file/d/1s8NzO_gbYTr_0H35s7ROtLHt4RncV41A/view?usp=sharing"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" class="me-1" style="font-size: 51px;">
+                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z"></path>
+                        </svg>View full document</a></div>
             </div>
         </div>
     </section>
