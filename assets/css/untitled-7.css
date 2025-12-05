@@ -1,0 +1,5 @@
+.link-primary:hover, .link-primary:focus {
+  color: var(--bs-link-hover-color) !important;
+  text-decoration-color: inherit;
+}
+
