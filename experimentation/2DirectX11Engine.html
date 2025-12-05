@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Simulateur Pédagogique de manutention</title>
-    <meta property="og:image" content="../assets/img/projects/torpille_sqaure.webp">
-    <meta name="description" content="Educational simulator for teaching the handling of torpedoes">
+    <title>DirectX11 Render Engine for Voxel worlds</title>
+    <meta property="og:image" content="../assets/img/projects/IslandGeneratorCover.webp">
+    <meta name="description" content="Direct3D11 engine for rendering and simulating voxel worlds. (In development)
+">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Azeret+Mono:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap">
@@ -18,7 +19,7 @@
 
 <body>
     <header class="bg-body sticky-top" style="background: #e8d8c4;">
-        <div class="container">
+        <div class="container" style="padding-bottom: 0;">
             <h3 class="fs-5 fw-bold text-center text-primary" style="padding-top: 30px;">Sébastien Morris</h3>
             <p style="text-align: center;">sebw.morris@gmail.com</p>
             <ul class="list-inline" style="text-align: center;">
@@ -44,7 +45,7 @@
                         </ul>
                     </div>
                 </div>
-            </nav><a class="fw-bold text-decoration-none link-primary mt-3 mb-3 link-back" href="/overview/1Projects.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-left-short me-1">
+            </nav><a class="fw-bold text-decoration-none link-primary mt-3 mt-lg-1 mb-3 link-back" href="/overview/2TechnicalExperimentations.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-left-short me-1">
                     <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"></path>
                 </svg>Back</a>
         </div>
@@ -52,34 +53,56 @@
     <section class="my-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 align-self-start mt-3">
-                    <div class="row gx-2 gy-2 row-cols-1" data-bss-baguettebox="">
-                        <div class="col"><a href="../assets/img/TorpilleHand.webp"><img class="img-fluid" src="../assets/img/TorpilleHand.webp" width="16" height="16"></a></div>
-                        <div class="col"><a href="../assets/img/tORPILLEvIEW.webp"><img class="img-fluid" src="../assets/img/tORPILLEvIEW.webp" width="16" height="16"></a></div>
-                    </div>
-                </div>
                 <div class="col">
-                    <h1 class="fs-2 fw-bold">Simulateur Pédagogique Manutention</h1>
-                    <p class="fst-italic text-muted">VR torpedo handling educational simulator</p>
-                    <p>VR educational simulator aiming to teach the students of "La Marine Nationale" the procedures for the handling of torpedoes.</p>
-                    <h1 class="fs-4 fw-bold mt-4">What I worked on</h1>
-                    <p class="fw-bold">Gameplay:</p>
+                    <h1 class="fs-2 fw-bold">DirectX11 Render Engine for Voxel worlds</h1>
+                    <p class="fst-italic text-muted">Direct3D11 engine for rendering and simulating voxel worlds. (In development)
+                    </p>
+                    <p>A personal project I explored how to render 3D worlds using Direct3D11. This engine focuses on Voxel worlds, using a Minecraft like model as a template. Allowing to visualise and test the use of various rendering and simulation features. This project was created from a base application capable of simply opening and running a Direct3D11 window.</p>
+                    <p><strong>This project is currently in development</strong></p>
+                    <div class="row">
+                        <div class="col text-center d-flex justify-content-center align-items-center flex-wrap"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/fmmQexN6d1I?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=fmmQexN6d1I" width="505" height="315"></iframe></div>
+                    </div>
+                    <h1 class="fs-4 fw-bold mt-4">Technical features:</h1>
+                    <p class="fw-bold">Base Rendering Pipeline:</p>
                     <ul>
-                        <li>VR Player controller and physics: Use of OpenXR. Teleportation based movement. Setup of responsive hands and custom poses. Physics based interactions with objects and buttons.</li>
-                        <li>VR Object interaction mechanics: Physics based buttons and remote controls. Handling of large machines using remote controls and buttons.</li>
-                        <li>Objectives system</li>
-                        <li>UI and menus: In world menu using teleportation for menu navigation. In world UI displaying objectives information.</li>
+                        <li>Input Assembler creation and setup. With custom vertex layout options (Position, Position and UV, ...)</li>
+                        <li>Custom vertex and pixel shaders</li>
+                        <li>Buffer handing (Vertex, Index, Constant). With a a generic class type utility functions for vertex buffers for the different vertex layouts and constant buffers for the different matrices (Model, View, Projection).&nbsp;</li>
+                        <li>Render target creation and setup</li>
+                        <li>Handling of opaque and transparent passes with Blending and Stencil depth</li>
+                        <li>UV and texture handling</li>
                     </ul>
+                    <p class="fw-bold">Voxel Engine:</p>
+                    <ul>
+                        <li>&nbsp;Camera class handling view and projection matrices (Use of constant buffer). The matrices are used to apply movement.</li>
+                        <li>&nbsp;Block data utility class for getting block type data and texture UV coordinates.</li>
+                        <li>&nbsp;Functions for creating a single face and for creating a cube with world and UV coordinates, and face orientation.&nbsp;</li>
+                        <li>&nbsp;Chunk batching of cubes. Use of culling to avoid instancing faces hidden inside the chunk (Transparency handled)&nbsp;</li>
+                        <li>&nbsp;World generation for handling of multiple chunks</li>
+                    </ul>
+                    <div class="row text-center">
+                        <div class="col d-flex justify-content-center align-items-center flex-wrap gap-4"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/ZrvsXrUN4LQ?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=ZrvsXrUN4LQ" width="505" height="315"></iframe><iframe class="float-end" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Kff7v58W9_0?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=Kff7v58W9_0" width="505" height="315"></iframe></div>
+                    </div>
+                    <h1 class="fs-4 fw-bold mt-4">Future improvements:</h1>
+                    <ul>
+                        <li>Noise and height map based terrain generation for visualising and simulating larger scale worlds</li>
+                        <li>Physics and collision simulation</li>
+                        <li>Terraforming (Adding/Removing blocks)</li>
+                        <li>Normal mapping</li>
+                        <li>Lighting (Diffuse, ambient, specular), with handling of different types of lights (Directional, spot, ...)</li>
+                        <li>Physically Based Rendering</li>
+                        <li>Reflections and refractions (water, glass, ...)</li>
+                        <li>Shadow casting (Shadow and depth maps)</li>
+                    </ul>
+                    <h1 class="fs-4 fw-bold mt-4">Motivations:</h1>
+                    <p class="text-start">This project was originally started in a rendering programming class, in which I established the base of the render engine and Minecraft like simulation. I am continuing this project because I wanted to take it further by adding more features. Allowing for higher quality and more advanced rendering, with different types of lighting, shadows, physically based rendering, reflections and refractions.</p>
                     <ul></ul>
-                    <p class="fw-bold mt-4" style="font-size: 24px;">Unity 3D</p><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-badge-vr me-3 mb-1 pb-1" style="font-size: 50px;">
-                        <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path>
-                        <path d="M4.508 11h1.429l1.99-5.999H6.61L5.277 9.708H5.22L3.875 5.001H2.5zm6.387-5.999H8.5V11h1.173V8.763h1.064L11.787 11h1.327L11.91 8.583C12.455 8.373 13 7.779 13 6.9c0-1.147-.773-1.9-2.105-1.9zm-1.222 2.87V5.933h1.05c.63 0 1.05.347 1.05.989 0 .633-.408.95-1.067.95H9.673z"></path>
-                    </svg>
+                    <p class="fw-bold mt-4" style="font-size: 24px;">C++, Dierct3D11</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <p class="fst-italic mt-5 mb-5" style="text-align: center;">For confidentiality reasons I cannot show more photos, videos or links for this project. And photos are from an old version of the project not the latest release.</p>
+                    <p class="fst-italic mt-5 mb-5" style="text-align: center;">As this project is still in development all images and videos are still work in progresses</p>
                 </div>
             </div>
         </div>
