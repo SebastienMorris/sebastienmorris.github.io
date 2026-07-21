@@ -26,6 +26,7 @@
   --bs-link-hover-color-rgb: 166,61,23;
   --bs-link-decoration: none;
   --bs-link-hover-decoration: none;
+  --bs-focus-ring-color: rgba(255,162,95,0.25);
 }
 
 .btn-primary {
