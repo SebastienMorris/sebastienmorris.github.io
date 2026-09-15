@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>DirectX11 Render Engine for Voxel worlds</title>
     <meta property="og:image" content="../assets/img/VoxelEngine/VoxelEngine_Cover.webp">
-    <meta name="description" content="Direct3D11 engine for rendering and simulating voxel worlds. (In development)
-">
+    <meta name="description" content="Native C++ Direct3D11 engine prototype exploring custom rendering pipelines and simulations">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Azeret+Mono:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich&amp;display=swap">
@@ -54,30 +53,25 @@
             <div class="row">
                 <div class="col">
                     <h1 class="fs-2 fw-bold">DirectX11 Render Engine for Voxel worlds</h1>
-                    <p class="fst-italic text-muted">Direct3D11 engine for rendering and simulating voxel worlds. (In development)
-                    </p>
-                    <p>A personal project in which I am exploring how to render 3D worlds using Direct3D11. This engine focuses on Voxel worlds, using a Minecraft like model as a template. Allowing to visualise and test the use of various rendering and simulation features. This project was created from a base application capable of simply opening and running a Direct3D11 window.<br><br>Currently I am working on a next update containing: Larger world generation and procedural terrain/water; world lighting calculations and shaders, with separate lighting pass.&nbsp;Following this, switching to a Direct3D12 compatible engine, with a more complete interface.&nbsp;&nbsp;</p>
-                    <p><strong>This project is currently in development</strong></p>
+                    <p class="fst-italic text-muted">Native C++ Direct3D11 engine prototype exploring custom rendering pipelines and simulations</p>
+                    <p>A personal R&amp;D project exploring low-level 3D graphics subsystems and rendering pipelines utilising Direct3D 11.<br><br>This engine serves as an architectural prototype designed to implement core graphics mechanics from scratch. It provides the testing environment and core architecture currently being used for my custom C++ Engine.</p>
                     <div class="row">
                         <div class="col text-center d-flex justify-content-center align-items-center flex-wrap gap-4"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/vE9tfz7SOTk?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=vE9tfz7SOTk" width="505" height="315"></iframe><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/F2KQhJ-X03E?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=F2KQhJ-X03E" width="505" height="315"></iframe></div>
                     </div>
                     <h1 class="fs-4 fw-bold mt-4">Technical features:</h1>
-                    <p class="fw-bold">Base Rendering Pipeline:</p>
+                    <p class="fw-bold">Rendering Pipeline:</p>
                     <ul>
-                        <li>Input Assembler creation and setup. With custom vertex layout options (Position, Position and UV, ...)</li>
-                        <li>Custom vertex and pixel shaders</li>
-                        <li>Buffer handing (Vertex, Index, Constant). With a a generic class type utility functions for vertex buffers for the different vertex layouts and constant buffers for the different matrices (Model, View, Projection).&nbsp;</li>
-                        <li>Render target creation and setup</li>
-                        <li>Handling of opaque and transparent passes with Blending and Stencil depth</li>
-                        <li>UV and texture handling</li>
+                        <li><strong>Input Assembler:</strong>&nbsp;Configured initialisation with customisable vertex layout options, including position, UV coordinates, and normal mapping.</li>
+                        <li><strong>Custom Shaders:</strong>&nbsp;Generating compiled shader .cso files and handling data allocations for custom vertex and pixel shaders, and UV texture mapping.&nbsp;</li>
+                        <li><strong>Buffer Wrappers:</strong> Developed generic utility structures to handle GPU buffer allocations (Vertex, Index, and Constant buffers), passing model, view, and projection transformation matrices.</li>
+                        <li><strong>Render Targets &amp; Depth Stencils:</strong>&nbsp;Render target setups alongside depth-stencil states to manage opaque and transparent passes.</li>
                     </ul>
-                    <p class="fw-bold">Voxel Engine:</p>
+                    <p class="fw-bold">Voxel Pipeline:</p>
                     <ul>
-                        <li>&nbsp;Camera class handling view and projection matrices (Use of constant buffer). The matrices are used to apply movement.</li>
-                        <li>&nbsp;Block data utility class for getting block type data and texture UV coordinates.</li>
-                        <li>&nbsp;Functions for creating a single face and for creating a cube with world and UV coordinates, and face orientation.&nbsp;</li>
-                        <li>&nbsp;Chunk batching of cubes. Use of culling to avoid instancing faces hidden inside the chunk (Transparency handled)&nbsp;</li>
-                        <li>&nbsp;World generation for handling of multiple chunks</li>
+                        <li>&nbsp;<strong>Camera Matrix Class:</strong>&nbsp;Modular camera controller to calculate view and projection matrices and modifying the respective constant buffers.</li>
+                        <li>&nbsp;<strong>Block Generation Utility Classes:</strong>&nbsp;Functions for creating blocks, handling type and texture data, world and UV coordinates, and orientation.</li>
+                        <li><strong>World Generation Utility Classes: </strong>Functions for generating customisable worlds with a chunk-based system, reusing the block generation utilities.&nbsp;&nbsp;</li>
+                        <li><strong>Face Culling &amp; Optimisation:</strong>&nbsp;Chunk batching and face visibility checks, taking into account transparency to cull vertices hidden within the terrain, reducing data memory size and draw calls.&nbsp;&nbsp;</li>
                     </ul>
                     <div class="row gx-2 gy-2 row-cols-2" data-bss-baguettebox="">
                         <div class="col"><a href="../assets/img/VoxelEngine/VoxelEngineGame.webp"><img class="img-fluid" src="../assets/img/VoxelEngine/VoxelEngineGame.webp" width="16" height="16"></a></div>
@@ -85,25 +79,24 @@
                     </div>
                     <h1 class="fs-4 fw-bold mt-4">Future improvements:</h1>
                     <ul>
-                        <li>Noise and height map based terrain generation for visualising and simulating larger scale worlds</li>
-                        <li>Physics and collision simulation</li>
-                        <li>Terraforming (Adding/Removing blocks)</li>
-                        <li>Normal mapping</li>
+                        <li>Noise and heightmap terrain generation for visualising and simulating larger scale worlds</li>
                         <li>Lighting (Diffuse, ambient, specular), with handling of different types of lights (Directional, spot, ...)</li>
                         <li>Physically Based Rendering</li>
-                        <li>Reflections and refractions (water, glass, ...)</li>
                         <li>Shadow casting (Shadow and depth maps)</li>
+                        <li>Reflections and refractions (water, glass, ...)</li>
+                        <li>Physics and collision simulation</li>
+                        <li>Terraforming (Adding/Removing blocks)</li>
                         <li>Direct3D12 compatibility</li>
                     </ul>
                     <h1 class="fs-4 fw-bold mt-4">Motivations:</h1>
-                    <p class="text-start">This project was originally started in a rendering programming class, in which I established the base of the render engine and Minecraft like simulation. I am continuing this project because I wanted to take it further by adding more features. Allowing for higher quality and more advanced rendering, with different types of lighting, shadows, physically based rendering, reflections and refractions.</p>
+                    <p class="text-start">This project was originally started in a rendering programming class, during which I established the base of the render engine. I am continuing this project because I want to further my low-level graphics knowledge by adding and exploring more advanced rendering features, like different lighting models, shadow techniques, physically based rendering, reflections and refractions...&nbsp;<br>This allows me to prototype and grasp new features before correctly and cleanly integrating them within my main C++ Engine.&nbsp;</p>
                     <ul></ul>
                     <p class="fw-bold mt-4" style="font-size: 24px;">C++, Dierct3D11</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <p class="fst-italic mt-5 mb-5" style="text-align: center;">As this project is still in development all images and videos are still work in progresses</p>
+                    <p class="fst-italic mt-5 mb-5" style="text-align: center;">As this is a prototyping and experimentation project, all images and videos are works in progress</p>
                 </div>
             </div>
             <div class="row">
@@ -115,7 +108,7 @@
     </section>
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
-            <p class="mb-0">Copyright © 2025, Sébastien Morris. All rights reserved</p>
+            <p class="mb-0">Copyright © 2026, Sébastien Morris. All rights reserved</p>
         </div>
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

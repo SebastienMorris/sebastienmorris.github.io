@@ -56,57 +56,54 @@
                     <h1 class="fs-2 fw-bold">Procedural island generator</h1>
                     <p class="fst-italic text-muted">Runtime procedural island generation with GPU mesh calculation and rendering
                     </p>
-                    <p>A personal project in which I explored procedural generations techniques aiming to be able to generate procedural floating islands at runtime using compute, vertex and fragment shaders in order to optimise the generation and rendering.<br>An older implementation was used for the procedural generation in one of my other projects <a href="../projects/2SkyboundOdyssey.html">Skybound Odyssey</a>.</p>
+                    <p>A personal project exploring procedural generations techniques to dynamically construct floating islands at runtime. Using compute, vertex and fragment shaders to optimise both the generation and rendering.<br>An earlier implementation was used for the procedural generation in one of my other projects <a href="../projects/2SkyboundOdyssey.html">Skybound Odyssey</a>.</p>
                     <div class="row">
                         <div class="col text-center d-flex justify-content-center align-items-center flex-wrap"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/fmmQexN6d1I?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=fmmQexN6d1I" width="505" height="315"></iframe></div>
                     </div>
                     <h1 class="fs-4 fw-bold mt-4">Technical features:</h1>
                     <p class="fw-bold">Mesh calculation:</p>
                     <ul>
-                        <li>Marching Cubes algorithm using a 3D Perlin Noise implementation to calculate the vertices and triangles of the mesh. And saves them to a buffer.</li>
-                        <li>3D Perlin Noise implementation using a hash function for the calculation of the gradient vectors.&nbsp;</li>
-                        <li>Combining Marching Cubes with 3D Perlin Noise allows for more interesting generations, with more complex shapes, overhangs and verticality.</li>
-                        <li>Falloff function applied to the noise value. In order to smoothly fade out the borders of the island and making sure there are no holes in the surface of the mesh.</li>
-                        <li>Calculation of normal vectors for each vertex. And saved to a buffer.</li>
-                        <li>A buffer containing the vertices of the triangles of the mesh. For each vertex an object space position and normal vector are stored.</li>
-                        <li>An Indirect Arguments buffer stores the vertex count of the mesh.</li>
-                        <li>The mesh calculation is entirely executed on the GPU using compute shaders.</li>
+                        <li><strong>Marching Cubes Core:</strong>&nbsp;Marching Cubes algorithm using 3D Perlin Noise to calculate and save mesh vertices and triangle data directly into a GPU buffer.</li>
+                        <li><strong>3D Perlin Noise implementation:</strong>&nbsp;Custom 3D Perlin noise using hash functions for the calculation of gradient vectors.&nbsp;</li>
+                        <li><strong>Enhanced Mesh Verticality:</strong> Combining Marching Cubes with 3D Perlin Noise allows for the generation of more complex terrain, including overhangs and tunnels.</li>
+                        <li><strong>Border Smoothing:</strong> Applies a custom falloff function to the noise data, smoothly fading out island borders to guarantee a seamless and closed mesh surface.</li>
+                        <li><strong>Geometry Buffer:</strong> Calculates normal vectors for each vertex, saving them into a structured buffer alongside their object-space positions.</li>
+                        <li><strong>Indirect Arguments:</strong>&nbsp;Utlises and Indirect Arguments buffer to track and store the vertex count of the generated mesh.</li>
+                        <li><strong>GPU Optimisation:</strong> The mesh calculation is entirely executed on the GPU using compute shaders, making use of its multithreading capabilities.</li>
                     </ul>
                     <div class="row text-center">
                         <div class="col d-flex justify-content-center align-items-center flex-wrap gap-4 pb-4"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/ZrvsXrUN4LQ?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=ZrvsXrUN4LQ" width="505" height="315"></iframe><iframe class="float-end" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Kff7v58W9_0?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=Kff7v58W9_0" width="505" height="315"></iframe></div>
                     </div>
                     <p class="fw-bold">Mesh rendering:</p>
                     <ul>
-                        <li>A vertex and fragment shader retrieves the stored positions and normals from a buffer containing all the vertices calculated by the compute shader in order to draw the mesh.&nbsp;</li>
-                        <li>Calculation of diffuse lighting in the fragment shader.</li>
-                        <li>Calculation of shadows in the fragment shader using the shadow depth map.</li>
-                        <li>Calculation of shadow casting using a shadow casting pass.</li>
-                        <li>Triplanar UV mapping in the fragment shader.</li>
-                        <li>Sampling of 2D textures, done in the fragment shader. With blending based on ratio variable.</li>
+                        <li><strong>Shader Pipeline:</strong> Custom vertex and fragment shaders retrieve calculated position and normal data arrays from the compute buffer to draw the geometry.</li>
+                        <li><strong>Lighting &amp; Depth Pass:</strong> Calculates the real-time diffuse lighting and dynamic shadow depth map in the fragment shader.</li>
+                        <li><strong>Shadow Pass:</strong> Processes the shadow depth map in a dedicated shadow casting pass.</li>
+                        <li><strong>Texturing:</strong>&nbsp;Triplanar UV mapping within the fragment shader to handle 2D texture sampling and ratio-based blending.</li>
                     </ul>
                     <div class="row text-center">
                         <div class="col d-flex justify-content-center align-items-center flex-wrap gap-4 pb-4"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Q-YJXI_hWd8?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=Q-YJXI_hWd8" width="505" height="315"></iframe><iframe class="float-end" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Qp8ctVwc3tE?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=Qp8ctVwc3tE" width="505" height="315"></iframe></div>
                     </div>
                     <p class="fw-bold">Generation:</p>
                     <ul>
-                        <li>Chunk based system. With chunks on the end growing and shrinking depending on the dimensions. Meaning that any dimensions can be used. Not just multiples of the maximum chunk size, as the end chunks' size is set to the remainder.</li>
-                        <li>This system allows for the use of larger chunk sizes, resulting in more efficient batches for rendering.</li>
-                        <li>The chunks mesh calculation and rendering of are handled by the respective chunks.</li>
-                        <li>Once the compute shader dispatched. The buffer containing the vertices data calculated by the compute shader is directly set to the buffer in rendering shader. This avoids any data being handled on the CPU.</li>
-                        <li>The rendering shader is then called using indirect calls.</li>
+                        <li><strong>Dynamic Chunk System:</strong> Outside chunk's dimensions shrink or grow dynamically. This accommodates for any world size rather than forcing multiples of a set chunk size value.</li>
+                        <li><strong>Batching:</strong> This system allows for larger chunk sizes, resulting in more efficient rendering batches. While a maximum chunk size gives further control based on the Culling performance demands.&nbsp;&nbsp;</li>
+                        <li><strong>Separated Calculations:</strong> The chunks mesh calculation and rendering of are handled by the respective chunks.</li>
+                        <li><strong>Minimal CPU Usage:</strong> Once the compute shader is dispatched, The calculated vertex buffer is directly bound to the rendering shader pipeline. This avoids any data being handled on the CPU.</li>
+                        <li><strong>Indirect Rendering:</strong> The rendering shader is executed using indirect draw calls.</li>
                     </ul>
                     <div class="row text-center">
                         <div class="col d-flex justify-content-center align-items-center flex-wrap"><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/e3kqZrBln9U?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=e3kqZrBln9U" width="505" height="315"></iframe></div>
                     </div>
                     <h1 class="fs-4 fw-bold mt-4">Future improvements:</h1>
                     <ul>
-                        <li>Triplanar mapping of texture normal maps for more detailed lighting.</li>
-                        <li>Terraforming, for adding and digging of the terrain.</li>
-                        <li>GPU instancing of vegetation and props (trees, rocks, ...), using Poisson Disc Sampling.</li>
+                        <li>Triplanar normal mapping for more detailed surface lighting.</li>
+                        <li>Terraforming, for real-time adding and digging of the terrain.</li>
+                        <li>GPU instancing of vegetation and props (trees, rocks, ...) using Poisson Disc Sampling.</li>
                         <li>Collisions and physics simulation</li>
                     </ul>
                     <h1 class="fs-4 fw-bold mt-4">Motivations:</h1>
-                    <p class="text-start">I started this project because I wanted to further explore different procedural generation techniques. Specifically more complex mesh generation rather than voxel generation. This project was originally used in <a href="../projects/2SkyboundOdyssey.html">Skybound Odyssey</a>. Since then I have made any modifications to it, as I wanted to greatly improve its performance, making better use of the GPU and compute, vertex and fragment shaders. Which is something I have really enjoyed. <a href="https://www.youtube.com/@SebastianLague">Sebastien Lague</a> was also a motivation for this project, while watching a few of his videos, in which he talked about different techniques for generation, rendering and optimisation. I then wanted to experiment with them and adapt them for my specific uses.</p>
+                    <p class="text-start">I started this project to further explore different procedural generation techniques. Specifically more complex mesh generation rather than voxel generation. This project was originally used in <a href="../projects/2SkyboundOdyssey.html">Skybound Odyssey</a>&nbsp;and since then I have made many modifications, greatly improving its performance, making better use of the GPU and compute, vertex and fragment shaders. A challenge I have really enjoyed. <br>This project was also inspired by&nbsp;<a href="https://www.youtube.com/@SebastianLague">Sebastien Lague</a>, while watching a few of his videos, during which he talked about different techniques for generation, rendering and optimisation. I then wanted to experiment and adapt them for my specific uses.</p>
                     <ul></ul>
                     <p class="fw-bold mt-4" style="font-size: 24px;">Unity 3D, Compute Shader, Vertex/Fragment Shader</p>
                 </div>
@@ -122,7 +119,7 @@
     </section>
     <footer class="text-center">
         <div class="container text-muted py-4 py-lg-5">
-            <p class="mb-0">Copyright © 2025, Sébastien Morris. All rights reserved</p>
+            <p class="mb-0">Copyright © 2026, Sébastien Morris. All rights reserved</p>
         </div>
     </footer>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
